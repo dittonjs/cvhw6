@@ -1,0 +1,36 @@
+function [labelim, num] = FindComponentLabels(inputim, se)
+    [rows, cols] = size(inputim);
+    B = uint8(zeros(size(inputim)));
+    visited = false(size(inputim));
+    label = 1;
+    for i = 1:rows
+        for j = 1:cols
+            if inputim(i,j) == 0
+                visited(i,j) = true;
+            elseif visited(i,j)
+                continue;
+            else
+                locations = [i j];
+                while ~isempty(locations)
+                    location = locations(1, :);
+                    locations[1,:] = [];
+                    if visited(location(1), location(2))
+                        continue
+                    end
+                    
+                    visited(location(1), location(2)) = true;
+                    B(location(1), location(2)) = label;
+                    [xs, ys] = meshgrid(location(2)-1:location(2)+1, loclocation(1)-1:location(1)+1);
+                    ys = ys(:);
+                    xs = xs(:);
+                    outside = xs < 1 | sx > rows | ys < 1 | ys > cols;
+                    xs(outside) = []
+                    ys(outside) = []
+                    visitednodes = visited(sub2ind([rows cols], xs, ys));
+                    xs(visitednodes=)
+                end
+            end
+        end
+    end
+end
+

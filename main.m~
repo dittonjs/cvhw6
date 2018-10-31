@@ -78,33 +78,9 @@
 % figure
 % subplot(1,2,1); imshow(opencloseseries); title('Open Close Series');
 % subplot(1,2,2); imshow(closeopenseries); title('Close Open Series');
-% disp '*** Finish Solving problem 1.5 ***';
 % pause;
 % close;
 
 ballim = imread('Ball.tif');
-% [ccim, num] = FindComponentLabels(ballim, [1 1 1; 1 1 1; 1 1 1]);
-% figure
-% subplot(1,2,1); imshow(ballim); title('ball');
-% subplot(1,2,2); imshow(ccim); title('cc labels');
-% disp 'num'
-% num
-% disp '*** Finish Solving problem 2.1 ***';
-% pause;
-% 
-% [labelim, num] = bwlabel(ballim);
-% figure
-% subplot(1,2,1); imshow(ballim); title('ball');
-% subplot(1,2,2); imshow(uint8(labelim ./ num .* 255)); title('cc labels');
-% disp 'num';
-% num
-% disp '*** Finish Solving problem 2.2 ***';
-% pause;
-% close;
+[]
 
-filteredim = FindCCNotOnEdge(ballim);
-figure
-subplot(1,2,1); imshow(ballim); title('ball');
-subplot(1,2,2); imshow(filteredim); title('cc no edges');
-pause
-close

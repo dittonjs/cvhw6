@@ -1,0 +1,32 @@
+function [labelim, num] = FindCCNotOnEdge(inputim)
+    se = [ 1 1 1; 1 1 1; 1 1 1];
+    labelim = zeros(size(inputim));
+    label = 0;
+    edgeimage = 
+    p=find(inputim==1);
+    p=p(1);
+    
+    while(~isempty(p))
+        label=label+1;
+        p=p(1);
+        X=false(size(inputim));
+        X(p)=1;
+
+        Y=inputim & imdilate(X,se);
+        while(~isequal(X,Y))
+            X=Y;
+            Y=inputim & imdilate(X,se);
+        end
+
+        pos=find(Y==1);
+
+        inputim(pos)=0;
+        labelim(pos)=label;
+
+        p=find(inputim==1);
+
+    end
+    
+    labelim = uint8((labelim ./ label) .* 255);
+    num = label;
+end
